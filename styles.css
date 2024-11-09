@@ -1,0 +1,38 @@
+body {
+  background-color: black;
+  border: solid rgb(255, 153, 170) 2px;
+  height: 900px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mainContainer {
+  /* Body of Calculator */
+  border: solid green 2px;
+  height: 500px;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+}
+
+.topContainer {
+  border: solid blue 2px;
+  display: flex;
+  flex-grow: 1;
+  justify-content: center;
+  align-items: center;
+}
+
+.display {
+  border: solid 2px pink;
+  height: 80%;
+  width: 90%;
+  box-sizing: border-box;
+}
+
+.bottomContainer {
+  box-sizing: border-box;
+  border: solid rgb(60, 255, 0) 2px;
+  flex-grow: 3;
+}
