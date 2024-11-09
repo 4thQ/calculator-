@@ -35,4 +35,15 @@ function operate(num1, operator, num2) {
   }
 }
 
-console.log(operate(2, "+", 2));
+const btnContainer = document.querySelector(".bottomContainer");
+
+btnContainer.addEventListener("click", (e) => {
+  if (e.target.tagName === "BUTTON") {
+    const value = e.target.innerText;
+    const display = document.querySelector(".display");
+    const span = document.createElement("span");
+    display.appendChild(span);
+    span.innerText = value;
+    console.log(span.innerText);
+  }
+});

@@ -5,6 +5,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  color: white;
 }
 
 .mainContainer {
@@ -22,17 +23,33 @@ body {
   flex-grow: 1;
   justify-content: center;
   align-items: center;
+  color: white;
 }
 
 .display {
   border: solid 2px pink;
-  height: 80%;
-  width: 90%;
+  height: 103px;
+  width: 352px;
   box-sizing: border-box;
+  color: white;
 }
 
 .bottomContainer {
   box-sizing: border-box;
   border: solid rgb(60, 255, 0) 2px;
   flex-grow: 3;
+  display: flex;
+  justify-content: center;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.btn {
+  width: 80px;
+  height: 40px;
+}
+
+span {
+  border: chocolate 2px solid;
 }
