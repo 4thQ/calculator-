@@ -1,6 +1,6 @@
-let num1;
-let operator;
-let num2;
+let num1 = "";
+let operator = "";
+let num2 = "";
 
 function add(num1, num2) {
   return num1 + num2;
@@ -19,17 +19,16 @@ function operate(num1, operator, num2) {
   switch (operator) {
     case "+":
       return add(num1, num2);
-      break;
 
     case "-":
       return subtract(num1, num2);
-      break;
+
     case "*":
       return multiply(num1, num2);
-      break;
+
     case "/":
-      return multiply(num1, num2);
-      break;
+      return divide(num1, num2);
+
     default:
       break;
   }
@@ -38,12 +37,11 @@ function operate(num1, operator, num2) {
 const btnContainer = document.querySelector(".bottomContainer");
 
 btnContainer.addEventListener("click", (e) => {
-  if (e.target.tagName === "BUTTON") {
-    const value = e.target.innerText;
-    const display = document.querySelector(".display");
-    const span = document.createElement("span");
-    display.appendChild(span);
-    span.innerText = value;
-    console.log(span.innerText);
+  if (e.target.className.includes("btn")) {
+    const btnValue = e.target.innerText;
+    num1 += btnValue;
+    console.log(num1);
+    const span = document.querySelector(".span");
+    span.innerText = num1;
   }
 });
