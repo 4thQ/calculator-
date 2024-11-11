@@ -11,6 +11,8 @@ function divide(num1, num2) {
   return num1 / num2;
 }
 
+
+
 function operate(num1, operator, num2) {
   switch (operator) {
     case "+":
@@ -30,56 +32,50 @@ function operate(num1, operator, num2) {
   }
 }
 
-let num1 = "";
-let num2 = "";
+let firstNumber = ""; //holds the value 12
+let secondNumber = ""; // holds 34
+let operator = ""; //holds +
 
-let firstNumber = "";
-let secondNumber = "";
+const container = document.querySelector(".bottomContainer");
+const display = document.querySelector(".displaySpan");
+const btn = document.querySelector(".btn");
 
-let operator = "";
-
-const btnContainer = document.querySelector(".bottomContainer");
-const span0 = document.querySelector(".span0");
-btnContainer.addEventListener("click", (e) => {
+container.addEventListener("click", (e) => {
   if (e.target.classList.contains("num")) {
-    const btnValue = e.target.innerText;
-
-    num1 += btnValue;
-    span0.innerText = num1;
-    console.log(num1);
+    // If there's an operator, we're building `secondNumber`
+    if (operator === "") {
+      firstNumber += e.target.innerText;
+      display.innerText = firstNumber;
+    } else {
+      secondNumber += e.target.innerText;
+      display.innerText = firstNumber + operator + secondNumber;
+    }
   } else if (e.target.classList.contains("op")) {
-    firstNumber = num1;
-    num1 = "";
-    secondNumber = num1;
     operator = e.target.innerText;
-    console.log(operator);
-
-    span0.innerText = firstNumber + operator;
+    display.innerText = firstNumber + operator;
   }
 
   if (e.target.classList.contains("eq")) {
-    let firstNumber1 = Number(firstNumber);
+    finalFirstNum = Number(firstNumber);
+    finalSecondNum = Number(secondNumber);
 
-    let num11 = Number(num1);
+    finalSum = operate(finalFirstNum, operator, finalSecondNum);
+    display.innerText = finalSum;
 
-    sumOfNums = operate(firstNumber1, operator, num11);
-
-    span0.innerText = sumOfNums;
-
-    console.log(sumOfNums);
-  } else if (e.target.classList.contains("clear")) {
-    span0.innerHTML = "";
-    firstNumber = "";
+    firstNumber = finalSum; // Use the result as the first number for next operation
+    secondNumber = "";
     operator = "";
-    num1 = "";
   }
 
-  console.log("-----");
-  console.log(firstNumber);
-  console.log(operator);
-  console.log(num1);
-});
+  if (e.target.classList.contains("clear")) {
+    display.innerText = "0";
 
-// firstnumber has the first Number
-// operator has the operator
-// num1 hold the second Number.
+    firstNumber = "";
+    secondNumber = "";
+    operator = "";
+  }
+
+  if (e.target.classList.contains("del")) {
+    display.innerText = display.innerText.slice(0, -1);
+  }
+});
