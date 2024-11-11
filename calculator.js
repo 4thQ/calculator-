@@ -1,7 +1,3 @@
-let num1 = "";
-let operator = "";
-let num2 = "";
-
 function add(num1, num2) {
   return num1 + num2;
 }
@@ -34,14 +30,29 @@ function operate(num1, operator, num2) {
   }
 }
 
-const btnContainer = document.querySelector(".bottomContainer");
+let num1 = "";
+let num2 = "";
 
+let firstNumber = "";
+let secondNumber = "";
+
+let operator = "";
+
+const btnContainer = document.querySelector(".bottomContainer");
+const span0 = document.querySelector(".span0");
 btnContainer.addEventListener("click", (e) => {
-  if (e.target.className.includes("btn")) {
+  if (e.target.classList.contains("num")) {
     const btnValue = e.target.innerText;
     num1 += btnValue;
+    span0.innerText = num1;
     console.log(num1);
-    const span = document.querySelector(".span");
-    span.innerText = num1;
+  } else if (e.target.classList.contains("op")) {
+    firstNumber = num1;
+    num1 = "";
+    secondNumber = num1;
+    operator = e.target.innerText;
+    console.log(operator);
+
+    span0.innerText = firstNumber + operator + secondNumber;
   }
 });
