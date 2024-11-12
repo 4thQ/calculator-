@@ -11,8 +11,6 @@ function divide(num1, num2) {
   return num1 / num2;
 }
 
-
-
 function operate(num1, operator, num2) {
   switch (operator) {
     case "+":
@@ -38,7 +36,7 @@ let operator = ""; //holds +
 
 const container = document.querySelector(".bottomContainer");
 const display = document.querySelector(".displaySpan");
-const btn = document.querySelector(".btn");
+const dot = document.querySelector(".dot");
 
 container.addEventListener("click", (e) => {
   if (e.target.classList.contains("num")) {
@@ -76,6 +74,26 @@ container.addEventListener("click", (e) => {
   }
 
   if (e.target.classList.contains("del")) {
-    display.innerText = display.innerText.slice(0, -1);
+    if (operator === "") {
+      // Deleting from `firstNumber`
+      firstNumber = firstNumber.slice(0, -1);
+      display.innerText = firstNumber || "0"; // Show "0" if firstNumber is empty
+    } else if (secondNumber === "") {
+      // If `secondNumber` is empty, remove the operator
+      operator = "";
+      display.innerText = firstNumber;
+    } else {
+      // Deleting from `secondNumber`
+      secondNumber = secondNumber.slice(0, -1);
+      display.innerText = firstNumber + operator + secondNumber;
+    }
   }
+
+  //   if (e.target.classList.contains("dot")) {
+  //     if (display.innerText.includes(".")) {
+  //       console.log("asd");
+  //     } else {
+  //       display.innerText += e.target.innerText;
+  //     }
+  //   }
 });
