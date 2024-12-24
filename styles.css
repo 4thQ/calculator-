@@ -4,13 +4,13 @@
 }
 
 body {
-  background-color: rgb(213, 184, 184);
-  border: solid rgb(255, 153, 170) 2px;
+  background-color: rgba(213, 184, 184, 0.306);
+
   height: 900px;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: white;
+  color: rgba(191, 31, 31, 0.899);
 }
 
 .mainContainer {
@@ -21,7 +21,7 @@ body {
   display: flex;
   flex-direction: column;
   border-radius: 20px;
-  background-color: white;
+  background-color: rgba(135, 0, 0, 0.249);
 }
 
 .topContainer {
@@ -34,7 +34,6 @@ body {
 }
 
 .display {
-  border: solid 2px pink;
   background-color: white;
   height: 103px;
   width: 352px;
@@ -50,13 +49,15 @@ body {
 }
 
 .displaySpan {
-  /* border: chocolate 2px solid; */
+  padding-right: 10px;
   font-size: 70px;
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.431);
 }
 
 .bottomContainer {
   box-sizing: border-box;
-  border: solid rgb(255, 255, 255) 2px;
+  border: solid rgba(255, 255, 255, 0) 2px;
   flex-grow: 3;
   display: flex;
   justify-content: center;
@@ -76,16 +77,25 @@ body {
 }
 
 .btn:hover {
-  background-color: rgb(183, 233, 250);
+  background-color: rgb(112, 233, 134);
 }
 
-.num.btn {
+.num.btn,
+.dot {
+  font-weight: bold;
   color: rgb(0, 0, 0);
+  background-color: rgb(215, 168, 197);
 }
 
 .op.btn,
+.eq {
+  background-color: rgb(240, 85, 7);
+  font-weight: bold;
+}
+
 .clear,
 .del,
-.eq {
-  color: rgb(146, 69, 146);
+.btn.remainder {
+  background-color: rgb(191, 191, 182);
+  font-weight: bold;
 }

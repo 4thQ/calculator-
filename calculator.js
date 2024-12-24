@@ -8,7 +8,14 @@ function multiply(num1, num2) {
   return num1 * num2;
 }
 function divide(num1, num2) {
+  if (num2 == 0) {
+    return console.error;
+  }
   return num1 / num2;
+}
+
+function remainder(num1, num2) {
+  return num1 % num2;
 }
 
 function operate(num1, operator, num2) {
@@ -25,6 +32,9 @@ function operate(num1, operator, num2) {
     case "/":
       return divide(num1, num2);
 
+    case "%":
+      return remainder(num1, num2);
+
     default:
       break;
   }
@@ -37,7 +47,6 @@ let operator = ""; //holds +
 const container = document.querySelector(".bottomContainer");
 const display = document.querySelector(".displaySpan");
 const dot = document.querySelector(".dot");
-
 container.addEventListener("click", (e) => {
   if (e.target.classList.contains("num")) {
     // If there's an operator, we're building `secondNumber`
@@ -67,33 +76,37 @@ container.addEventListener("click", (e) => {
 
   if (e.target.classList.contains("clear")) {
     display.innerText = "0";
-
     firstNumber = "";
     secondNumber = "";
     operator = "";
   }
-
   if (e.target.classList.contains("del")) {
     if (operator === "") {
-      // Deleting from `firstNumber`
       firstNumber = firstNumber.slice(0, -1);
-      display.innerText = firstNumber || "0"; // Show "0" if firstNumber is empty
+      display.innerText = firstNumber || "0";
     } else if (secondNumber === "") {
-      // If `secondNumber` is empty, remove the operator
       operator = "";
-      display.innerText = firstNumber;
+      display.innerText = firstNumber || "0"; // Default to "0" if firstNumber is empty
     } else {
-      // Deleting from `secondNumber`
       secondNumber = secondNumber.slice(0, -1);
       display.innerText = firstNumber + operator + secondNumber;
     }
   }
 
-  //   if (e.target.classList.contains("dot")) {
-  //     if (display.innerText.includes(".")) {
-  //       console.log("asd");
-  //     } else {
-  //       display.innerText += e.target.innerText;
-  //     }
-  //   }
+  if (e.target.classList.contains("dot")) {
+    // Prevent adding more than one dot in the current number
+    if (operator === "") {
+      // If `firstNumber` doesn't already contain a dot, add it
+      if (!firstNumber.includes(".")) {
+        firstNumber += ".";
+        display.innerText = firstNumber;
+      }
+    } else {
+      // If `secondNumber` doesn't already contain a dot, add it
+      if (!secondNumber.includes(".")) {
+        secondNumber += ".";
+        display.innerText = firstNumber + operator + secondNumber;
+      }
+    }
+  }
 });
