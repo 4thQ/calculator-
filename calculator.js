@@ -40,13 +40,15 @@ function operate(num1, operator, num2) {
   }
 }
 
-let firstNumber = ""; //holds the value 12
-let secondNumber = ""; // holds 34
-let operator = ""; //holds +
+let firstNumber = "";
+let secondNumber = "";
+let operator = "";
 
 const container = document.querySelector(".bottomContainer");
 const display = document.querySelector(".displaySpan");
 const dot = document.querySelector(".dot");
+
+//handles numbers and operators
 container.addEventListener("click", (e) => {
   if (e.target.classList.contains("num")) {
     // If there's an operator, we're building `secondNumber`
@@ -62,17 +64,25 @@ container.addEventListener("click", (e) => {
     display.innerText = firstNumber + operator;
   }
 
+  //handles the equals operator
+
   if (e.target.classList.contains("eq")) {
-    finalFirstNum = Number(firstNumber);
-    finalSecondNum = Number(secondNumber);
+    if (display.innerText == "0") {
+      return;
+    } else {
+      finalFirstNum = Number(firstNumber);
+      finalSecondNum = Number(secondNumber);
 
-    finalSum = operate(finalFirstNum, operator, finalSecondNum);
-    display.innerText = finalSum;
+      finalSum = operate(finalFirstNum, operator, finalSecondNum);
+      display.innerText = finalSum;
 
-    firstNumber = finalSum; // Use the result as the first number for next operation
-    secondNumber = "";
-    operator = "";
+      firstNumber = finalSum; // Use the result as the first number for next operation
+      secondNumber = "";
+      operator = "";
+    }
   }
+
+  //handles the clear & delete operator
 
   if (e.target.classList.contains("clear")) {
     display.innerText = "0";
@@ -83,26 +93,24 @@ container.addEventListener("click", (e) => {
   if (e.target.classList.contains("del")) {
     if (operator === "") {
       firstNumber = firstNumber.slice(0, -1);
-      display.innerText = firstNumber || "0";
     } else if (secondNumber === "") {
       operator = "";
-      display.innerText = firstNumber || "0"; // Default to "0" if firstNumber is empty
     } else {
       secondNumber = secondNumber.slice(0, -1);
-      display.innerText = firstNumber + operator + secondNumber;
     }
+
+    display.innerText = firstNumber + operator + secondNumber || "0";
   }
 
+  //handles the dot operator
+
   if (e.target.classList.contains("dot")) {
-    // Prevent adding more than one dot in the current number
     if (operator === "") {
-      // If `firstNumber` doesn't already contain a dot, add it
       if (!firstNumber.includes(".")) {
         firstNumber += ".";
         display.innerText = firstNumber;
       }
     } else {
-      // If `secondNumber` doesn't already contain a dot, add it
       if (!secondNumber.includes(".")) {
         secondNumber += ".";
         display.innerText = firstNumber + operator + secondNumber;
