@@ -67,13 +67,14 @@ container.addEventListener("click", (e) => {
   //handles the equals operator
 
   if (e.target.classList.contains("eq")) {
-    if (display.innerText == "0") {
+    if (display.innerText == "0" || secondNumber === "") {
       return;
     } else {
       finalFirstNum = Number(firstNumber);
       finalSecondNum = Number(secondNumber);
 
       finalSum = operate(finalFirstNum, operator, finalSecondNum);
+
       display.innerText = finalSum;
 
       firstNumber = finalSum; // Use the result as the first number for next operation

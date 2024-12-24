@@ -43,6 +43,7 @@ body {
   flex-direction: column;
   justify-content: end;
   align-items: end;
+  overflow: hidden;
   border-radius: 20px;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
@@ -50,7 +51,7 @@ body {
 
 .displaySpan {
   padding-right: 10px;
-  font-size: 70px;
+  font-size: 65px;
   font-weight: bold;
   color: rgba(0, 0, 0, 0.431);
 }
